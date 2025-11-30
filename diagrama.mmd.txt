@@ -1,0 +1,50 @@
+erDiagram
+    PROFESSOR ||--o{ RESERVA : "realiza"
+    LABORATORIO ||--o{ RESERVA : "alocado_em"
+    DISCIPLINA ||--o{ RESERVA : "referente_a"
+    HORARIO ||--o{ RESERVA : "ocorre_em"
+    PERIODO ||--o{ RESERVA : "validade"
+
+    PROFESSOR {
+        int id_professor PK
+        string nome
+        string matricula
+    }
+
+    LABORATORIO {
+        int id_laboratorio PK
+        string nome_sala
+        int capacidade
+        string software_instalado
+    }
+
+    DISCIPLINA {
+        int id_disciplina PK
+        string nome
+        string sigla
+    }
+
+    HORARIO {
+        int id_horario PK
+        time hora_inicio
+        time hora_fim
+        string turno
+    }
+
+    PERIODO {
+        int id_periodo PK
+        string semestre_ano
+        date data_inicio
+        date data_fim
+    }
+
+    RESERVA {
+        int id_reserva PK
+        date data_reserva
+        int id_professor FK
+        int id_laboratorio FK
+        int id_disciplina FK
+        int id_horario FK
+        int id_periodo FK
+        string status "Confirmada/Cancelada"
+    }
